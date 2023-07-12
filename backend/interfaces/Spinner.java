@@ -8,6 +8,7 @@ public interface Spinner extends Mover {
     double getAngle();
     void setAngle(double angle);
     Point getCenterPoint();
+    Stationary posAfterRotation(double angle);
     default void rotateBy(double angle) {
         setAngle((getAngle() - angle) % (Math.PI * 2));
         points().forEach(p -> p.rotate_about(getCenterPoint(), angle));

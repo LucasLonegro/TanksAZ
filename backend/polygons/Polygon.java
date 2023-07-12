@@ -21,23 +21,6 @@ public class Polygon implements Comparable<Polygon>, Stationary {
     public void moveBy(double dx, double dy) {
         points.forEach(p -> p.moveBy(dx, dy));
     }
-
-    public boolean touches(Polygon other) {
-        for (Line line : lines) {
-            if (other.intersectedBy(line))
-                return true;
-        }
-        return false;
-    }
-
-    public boolean intersectedBy(Line l) {
-        for (Line line : lines) {
-            if (line.intersects(l))
-                return true;
-        }
-        return false;
-    }
-
     public void scaleTo(double factor) {
         Point p0 = points.get(0);
         points.forEach(p -> p.moveBy(p0.getX() + factor * (p.getX() - p0.getX()),p0.getY() + factor * (p.getY() - p0.getY())));
@@ -52,8 +35,7 @@ public class Polygon implements Comparable<Polygon>, Stationary {
         return new ArrayList<>(points);
     }
     public Polygon getClone(){
-        List<Point> clone = points.stream().map(p -> new Point(p.getX(),p.getY())).toList();
-        return new Polygon(clone.toArray(Point[]::new)); // disgusting
+        return new Polygon(clonePoints().toArray(Point[]::new)); // disgusting
     }
 
     @Override
@@ -74,6 +56,9 @@ public class Polygon implements Comparable<Polygon>, Stationary {
         return Objects.hash(lines);
     }
 
+    protected List<Point> clonePoints(){
+        return points.stream().map(p -> new Point(p.getX(),p.getY())).toList();
+    }
     private void setLines() {
         if (points.isEmpty())
             return;

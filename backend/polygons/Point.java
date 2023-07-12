@@ -1,9 +1,13 @@
 package backend.polygons;
 
+import backend.interfaces.Stationary;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Comparator;
 
-public class Point implements Comparable<Point> {
+public class Point implements Comparable<Point>, Stationary {
     private Double x, y;
 
     public Point(Double x, Double y) {
@@ -65,5 +69,13 @@ public class Point implements Comparable<Point> {
     @Override
     public int compareTo(Point other) {
         return Comparator.comparing(Point::getX).thenComparing(Point::getY).compare(this, other);
+    }
+    @Override
+    public List<Point> points() {
+        return List.of(this);
+    }
+
+    public List<Line> lines(){
+        return new ArrayList<>();
     }
 }

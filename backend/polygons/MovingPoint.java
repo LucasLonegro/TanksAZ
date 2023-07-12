@@ -1,6 +1,7 @@
 package backend.polygons;
 
 import backend.interfaces.Mover;
+import backend.interfaces.Stationary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,5 +38,11 @@ public class MovingPoint extends Point implements Mover {
 
     public List<Point> points(){
         return List.of(this);
+    }
+    @Override
+    public Stationary posAfterMove(){
+        MovingPoint toRet = new MovingPoint(getX(),getY(),velocity,direction);
+        toRet.move();
+        return toRet;
     }
 }
