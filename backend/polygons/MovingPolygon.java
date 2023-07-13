@@ -11,12 +11,6 @@ public class MovingPolygon extends Polygon implements Mover {
         this.velocity = velocity;
         this.direction = direction % (Math.PI * 2);
     }
-
-    public void move() {
-        points().forEach(p -> p.moveBy(dx(), dy()));
-    }
-
-
     public void setVelocity(double velocity) {
         this.velocity = velocity;
     }

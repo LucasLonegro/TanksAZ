@@ -3,6 +3,8 @@ package backend.polygons;
 import backend.interfaces.Spinner;
 import backend.interfaces.Stationary;
 
+import java.util.Set;
+
 public class SpinningPolygon extends MovingPolygon implements Spinner {
     private final Point centerPoint;
     private double angle;
@@ -13,13 +15,6 @@ public class SpinningPolygon extends MovingPolygon implements Spinner {
         this.angle = direction;
     }
 
-    public void move() {
-        super.move();
-        if (!points().contains(centerPoint)) {
-            centerPoint.moveBy(dx(), dy());
-        }
-    }
-
     public void setAngle(double angle) {
         this.angle = angle;
     }
@@ -28,6 +23,12 @@ public class SpinningPolygon extends MovingPolygon implements Spinner {
     }
     public Point getCenterPoint(){
         return this.centerPoint;
+    }
+    @Override
+    public Set<Point> points(){
+        Set<Point> toRet = super.points();
+        toRet.add(centerPoint);
+        return toRet;
     }
     @Override
     public SpinningPolygon getClone(){

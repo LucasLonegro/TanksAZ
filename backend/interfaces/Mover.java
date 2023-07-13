@@ -6,7 +6,9 @@ public interface Mover extends Stationary {
     double getDirection();
     void setDirection(double direction);
     Stationary posAfterMove();
-    void move();
+    default void move(){
+        points().forEach(p->p.moveBy(dx(),dy()));
+    }
     default double dx() {
         return getVelocity() * Math.cos(getDirection());
     }
