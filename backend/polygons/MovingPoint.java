@@ -36,9 +36,6 @@ public class MovingPoint extends Point implements Mover {
         this.velocity = velocity;
     }
 
-    public List<Point> points(){
-        return List.of(this);
-    }
     @Override
     public Stationary posAfterMove(){
         MovingPoint toRet = new MovingPoint(getX(),getY(),velocity,direction);

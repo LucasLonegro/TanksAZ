@@ -78,4 +78,7 @@ public class Point implements Comparable<Point>, Stationary {
     public List<Line> lines(){
         return new ArrayList<>();
     }
+    public Point getClone(){
+        return new Point(x,y);
+    }
 }
