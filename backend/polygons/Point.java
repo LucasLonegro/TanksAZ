@@ -2,10 +2,7 @@ package backend.polygons;
 
 import backend.interfaces.Stationary;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Comparator;
+import java.util.*;
 
 public class Point implements Comparable<Point>, Stationary {
     private Double x, y;
@@ -71,12 +68,12 @@ public class Point implements Comparable<Point>, Stationary {
         return Comparator.comparing(Point::getX).thenComparing(Point::getY).compare(this, other);
     }
     @Override
-    public List<Point> points() {
-        return List.of(this);
+    public Set<Point> points() {
+        return Set.of(this);
     }
 
-    public List<Line> lines(){
-        return new ArrayList<>();
+    public Set<Line> lines(){
+        return new HashSet<>();
     }
     public Point getClone(){
         return new Point(x,y);

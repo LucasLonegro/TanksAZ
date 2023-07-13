@@ -4,6 +4,7 @@ import backend.polygons.Line;
 import backend.polygons.Point;
 
 import java.util.List;
+import java.util.Set;
 
 public interface Stationary {
     default boolean intersectedBy(Stationary other) {
@@ -14,8 +15,11 @@ public interface Stationary {
         }
         return false;
     }
+    default Point firstPoint(){
+        return points().stream().findFirst().orElse(null);
+    }
 
-    List<Point> points();
+    Set<Point> points();
 
-    List<Line> lines();
+    Set<Line> lines();
 }

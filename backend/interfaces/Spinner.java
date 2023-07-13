@@ -14,7 +14,7 @@ public interface Spinner extends Mover {
         points().forEach(p -> p.rotate_about(getCenterPoint(), angle));
     }
     default void rotateTowards(Point point, double angle) {
-        double da = getAngle() - points().get(0).angle(point);
+        double da = getAngle() - firstPoint().angle(point);
         if (Math.abs(da) > ANGLE_TOLERANCE) {
             if ((da > -2 * Math.PI && da < -Math.PI) || (da > 0 && da < Math.PI)) {
                 rotateBy(angle);

@@ -10,6 +10,9 @@ import backend.polygons.SpinningPolygon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class Tank implements Spinner {
     private final List<SpinningPolygon> model;
@@ -64,13 +67,13 @@ public class Tank implements Spinner {
 
 
     @Override
-    public List<Point> points() {
-        return model.stream().flatMap(p -> points().stream()).toList();
+    public Set<Point> points() {
+        return model.stream().flatMap(p -> points().stream()).collect(Collectors.toSet());
     }
 
     @Override
-    public List<Line> lines() {
-        return model.stream().flatMap(p -> lines().stream()).toList();
+    public Set<Line> lines() {
+        return model.stream().flatMap(p -> lines().stream()).collect(Collectors.toSet());
     }
     public Tank getClone(){
         return new Tank(getCenterPoint().getClone(),scale,getVelocity());

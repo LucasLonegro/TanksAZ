@@ -5,8 +5,8 @@ public interface Mover extends Stationary {
     void setVelocity(double velocity);
     double getDirection();
     void setDirection(double direction);
-    void move();
     Stationary posAfterMove();
+    void move();
     default double dx() {
         return getVelocity() * Math.cos(getDirection());
     }

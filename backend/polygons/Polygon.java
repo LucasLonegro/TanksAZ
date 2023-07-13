@@ -3,6 +3,7 @@ package backend.polygons;
 import backend.interfaces.Stationary;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Polygon implements Comparable<Polygon>, Stationary {
     private final List<Point> points;
@@ -27,12 +28,12 @@ public class Polygon implements Comparable<Polygon>, Stationary {
         setInfluence();
     }
 
-    public List<Line> lines() {
-        return new ArrayList<>(lines);
+    public Set<Line> lines() {
+        return new HashSet<>(lines);
     }
 
-    public List<Point> points() {
-        return new ArrayList<>(points);
+    public Set<Point> points() {
+        return new HashSet<>(points);
     }
     public Polygon getClone(){
         return new Polygon(clonePoints().toArray(Point[]::new)); // disgusting

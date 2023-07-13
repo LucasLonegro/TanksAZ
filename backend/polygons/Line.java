@@ -1,9 +1,10 @@
 package backend.polygons;
 
-import java.util.Comparator;
-import java.util.Objects;
+import backend.interfaces.Stationary;
 
-public class Line implements Comparable<Line> {
+import java.util.*;
+
+public class Line implements Comparable<Line>, Stationary {
     private final Point p1, p2;
 
     public Line(Point p1, Point p2) {
@@ -54,5 +55,15 @@ public class Line implements Comparable<Line> {
     @Override
     public int compareTo(Line other) {
         return Comparator.comparing(Line::getP1).thenComparing(Line::getP2).compare(this, other);
+    }
+
+    @Override
+    public Set<Point> points() {
+        return Set.of(p1,p2);
+    }
+
+    @Override
+    public Set<Line> lines() {
+        return Set.of(this);
     }
 }
